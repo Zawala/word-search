@@ -1,5 +1,13 @@
 import random
 
+"""
+This script generates a text file containing a specified
+number of random words.
+Each word is composed of 8 characters, which can be any
+combination of lowercase and uppercase letters,
+and digits. The generated words are written to a file
+named '500K.txt' in the 'files' directory.
+"""
 
 # Define the number of words
 num_words = 500000

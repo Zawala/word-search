@@ -4,7 +4,7 @@ Description=Search through large text files.
 
 [Service]
 Type=simple
-ExecStart=/home/user/Documents/github/text_search_test/main.bin
+ExecStart=/home/user/Documents/github/text_search_test/server.bin
 Restart=always
 RestartSec=1
 

@@ -52,11 +52,11 @@ if reread_onquery is False:
         global_file_content = file.read()
 
 
-# Function to perform fuzzy search on a file
+# Function to perform jelly search on a file
 def search_file_jelly(file: Union[IO[str], IO[bytes]],
                       search_term: str, threshold: float = 1.0) -> str:
     """
-    Perform a fuzzy search on a file using the Jaro-Winkler similarity
+    Perform a jelly search on a file using the Jaro-Winkler similarity
     algorithm.
 
     Parameters:
@@ -82,7 +82,7 @@ def search_file_jelly(file: Union[IO[str], IO[bytes]],
 
     # Iterate over each line in the file
     for line_number, line in enumerate(file, start=1):
-        # Perform fuzzy matching on each string
+        # Perform jelly matching on each string
         score = jellyfish.jaro_winkler_similarity(line.strip(), search_term)
         if score >= threshold:
             # If a match is found, append the original line to the matches list
@@ -121,7 +121,7 @@ class textServicer(text_pb2_grpc.textServicer):
 
         This method logs the search query and the requesting IP address, then
           performs
-        a fuzzy search on the specified file or global file content based on
+        a jelly search on the specified file or global file content based on
           the query string.
         The search results are encapsulated in a reply object and returned to
           the client.

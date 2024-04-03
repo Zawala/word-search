@@ -126,7 +126,7 @@ if __name__ == "__main__":
     and sends a search request based on the user's input.
     """
     try:
-        secure = input("Do you wish to connect via SSL? yN")
+        secure = input("Do you wish to connect via SSL? yN :")
         if secure.lower() == 'y':
             secure_channel_request(sys.argv[1])
         elif secure.lower() == 'n':
