@@ -1,0 +1,12 @@
+
+[Unit]
+Description=Search through large text files.
+
+[Service]
+Type=simple
+ExecStart=/home/user/Documents/github/text_search_test/main.bin
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

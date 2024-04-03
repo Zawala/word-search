@@ -1,0 +1,13 @@
+syntax = "proto3";
+package databank;
+
+service text {
+  rpc search (request) returns (reply){}
+}
+
+message request{
+    string search_string=1;}
+
+message reply{
+    string info=3;
+}
