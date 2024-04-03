@@ -6,7 +6,7 @@ import io
 import grpc
 import os
 import configparser
-import jellyfish
+from difflib import SequenceMatcher
 from typing import Union, IO
 
 # Configure logging
@@ -52,11 +52,11 @@ if reread_onquery is False:
         global_file_content = file.read()
 
 
-# Function to perform fuzzy search on a file
-def search_file_jelly(file: Union[IO[str], IO[bytes]],
+# Function to perform diflib search on a file
+def search_file_difflib(file: Union[IO[str], IO[bytes]],
                       search_term: str, threshold: float = 1.0) -> str:
     """
-    Perform a fuzzy search on a file using the Jaro-Winkler similarity
+    Perform a diflib search on a file using the Jaro-Winkler similarity
     algorithm.
 
     Parameters:
@@ -82,8 +82,8 @@ def search_file_jelly(file: Union[IO[str], IO[bytes]],
 
     # Iterate over each line in the file
     for line_number, line in enumerate(file, start=1):
-        # Perform fuzzy matching on each string
-        score = jellyfish.jaro_winkler_similarity(line.strip(), search_term)
+        # Perform diflib matching on each string
+        score = score = SequenceMatcher(None, line.strip(), search_term).ratio()
         if score >= threshold:
             # If a match is found, append the original line to the matches list
             matches.append((line_number, line.strip()))
@@ -121,7 +121,7 @@ class textServicer(text_pb2_grpc.textServicer):
 
         This method logs the search query and the requesting IP address, then
           performs
-        a fuzzy search on the specified file or global file content based on
+        a diflib search on the specified file or global file content based on
           the query string.
         The search results are encapsulated in a reply object and returned to
           the client.
@@ -142,10 +142,10 @@ class textServicer(text_pb2_grpc.textServicer):
         logging.debug(f"DEBUG: Requesting IP: {context.peer()}")
         if reread_onquery:
             with open(search_file_path, 'r') as file:
-                reply.info = search_file_jelly(file, query_str.search_string)
+                reply.info = search_file_difflib(file, query_str.search_string)
                 return reply
         else:
-            reply.info = search_file_jelly(
+            reply.info = search_file_difflib(
                 io.StringIO(global_file_content), query_str.search_string)
             return reply
 
