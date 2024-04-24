@@ -1,4 +1,4 @@
-# Submission for AlgoExperts Interview Question
+# Text search
 
 This document and run a Python-based text search application, which includes a server and a client for searching through large text files. The application utilizes gRPC for communication and secure communication channels.
 
