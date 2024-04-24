@@ -11,6 +11,7 @@ This document outlines the steps to set up and run a Python-based text search ap
 
 1. **Initialize a Virtual Environment**:
    ```
+   virtualenv python3
    ```
 
 2. **Activate the Virtual Environment**:
