@@ -1,6 +1,6 @@
 # Submission for AlgoExperts Interview Question
 
-This submission outlines the steps to set up and run a Python-based text search application, which includes a server and a client for searching through large text files. The application utilizes gRPC for communication and secure communication channels.
+This document and run a Python-based text search application, which includes a server and a client for searching through large text files. The application utilizes gRPC for communication and secure communication channels.
 
 ## Prerequisites
 
